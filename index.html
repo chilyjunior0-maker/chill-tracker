@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chill Tracker | Zen Dashboard</title>
+    <title>Chill Tracker | Simple & Zen</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600&display=swap" rel="stylesheet">
@@ -18,14 +17,13 @@
             --primary-hover: #4F46E5;
             --success: #10B981;
             --danger: #EF4444;
-            --warning: #F59E0B;
             --ink-main: #1E293B;
             --ink-muted: #64748B;
             --border-color: #E2E8F0;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --radius-lg: 16px;
-            --radius-md: 8px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 2px 4px rgba(0,0,0,0.05);
+            --radius-lg: 12px;
+            --radius-md: 6px;
+            --transition: all 0.2s ease;
         }
 
         [data-theme="dark"] {
@@ -35,11 +33,10 @@
             --primary-hover: #6366F1;
             --success: #34D399;
             --danger: #F87171;
-            --warning: #FBBF24;
             --ink-main: #F1F5F9;
             --ink-muted: #94A3B8;
             --border-color: #334155;
-            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            --shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -50,96 +47,73 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-ground);
             color: var(--ink-main);
-            transition: background-color 0.3s ease;
-            line-height: 1.6;
+            line-height: 1.5;
         }
-
-        h1, h2, h3 { font-family: 'Poppins', sans-serif; margin: 0; }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            padding-bottom: 100px;
         }
 
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-top: 20px;
+            margin-bottom: 30px;
+            padding: 10px 0;
         }
 
         .logo-area h1 {
-            font-size: 24px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
             color: var(--primary);
-            letter-spacing: -0.5px;
-        }
-
-        /* Motivation Banner */
-        .motivation-banner {
-            background: var(--primary);
-            color: white;
-            padding: 16px 24px;
-            border-radius: var(--radius-lg);
-            margin-bottom: 32px;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-            text-align: center;
-            font-weight: 500;
-            font-size: 15px;
-            animation: fadeIn 0.5s ease;
+            margin: 0;
         }
 
         .theme-toggle {
             background: var(--bg-surface);
             border: 1px solid var(--border-color);
             color: var(--ink-main);
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 8px 12px;
+            border-radius: var(--radius-md);
             cursor: pointer;
-            font-weight: 500;
             font-size: 14px;
             transition: var(--transition);
-            box-shadow: var(--shadow);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            box-shadow: var(--shadow);
         }
 
-        .theme-toggle:hover { transform: translateY(-2px); border-color: var(--primary); }
-
-        .stats-grid {
+        /* Stats */
+        .stats-bar {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin-bottom: 32px;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
         .stat-card {
             background: var(--bg-surface);
-            padding: 24px;
+            padding: 15px;
             border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
             text-align: center;
-            transition: var(--transition);
+            box-shadow: var(--shadow);
         }
 
-        .stat-card:hover { transform: translateY(-4px); }
-
         .stat-label {
-            display: block;
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 1px;
             color: var(--ink-muted);
-            margin-bottom: 8px;
             font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
         }
 
         .stat-value {
-            font-size: 32px;
+            font-size: 24px;
             font-weight: 700;
             color: var(--primary);
             font-family: 'Poppins', sans-serif;
@@ -149,156 +123,162 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        .section-header h2 { font-size: 20px; color: var(--ink-main); }
+        .section-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+        }
 
         .btn-add {
             background: var(--primary);
             color: white;
             border: none;
-            padding: 10px 18px;
+            padding: 8px 15px;
             border-radius: var(--radius-md);
-            font-weight: 500;
             cursor: pointer;
+            font-weight: 500;
+            font-size: 13px;
             transition: var(--transition);
-            font-size: 14px;
         }
 
-        .btn-add:hover { background: var(--primary-hover); box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); }
+        .btn-add:hover { background: var(--primary-hover); }
 
+        /* Classic Task List Layout */
         .subject-card {
             background: var(--bg-surface);
             border-radius: var(--radius-lg);
             border: 1px solid var(--border-color);
-            margin-bottom: 16px;
-            overflow: hidden;
+            margin-bottom: 20px;
             box-shadow: var(--shadow);
-            transition: var(--transition);
+            overflow: hidden;
         }
 
-        /* State: Late/Urgent */
-        .subject-card.status-urgent { border-left: 5px solid var(--warning); }
-        .subject-card.status-late { border-left: 5px solid var(--danger); }
-
-        .subject-header {
-            padding: 18px 24px;
+        .subject-title-bar {
+            padding: 15px 20px;
+            background: rgba(0,0,0,0.02);
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            cursor: pointer;
-            user-select: none;
-            transition: background 0.2s ease;
         }
 
-        .subject-header:hover { background: rgba(99, 102, 241, 0.05); }
-
-        .subject-title-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .subject-title {
+        .subject-name {
             font-weight: 600;
-            font-size: 17px;
-            color: var(--ink-main);
+            font-size: 16px;
         }
 
-        .badge {
-            font-size: 10px;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .badge-urgent { background: var(--warning); color: white; }
-        .badge-late { background: var(--danger); color: white; }
-
-        .subject-progress {
-            font-size: 13px;
-            color: var(--ink-muted);
-            font-weight: 500;
-        }
-
-        .subject-content {
+        .tasks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 12px;
-            padding: 0 24px 24px 24px;
-            border-top: 1px solid var(--border-color);
-            background: rgba(0,0,0,0.01);
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            padding: 20px;
         }
 
         .day-item {
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 8px 0;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
             cursor: pointer;
-            transition: opacity 0.2s;
+            transition: var(--transition);
+            background: rgba(0,0,0,0.01);
         }
 
-        .custom-checkbox {
-            width: 20px;
-            height: 20px;
+        .day-item:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .day-item.completed {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: var(--success);
+        }
+
+        .checkbox {
+            width: 18px;
+            height: 18px;
             border: 2px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 4px;
             display: inline-block;
             position: relative;
             transition: var(--transition);
-            flex-shrink: 0;
         }
 
-        .day-item.completed .custom-checkbox {
+        .day-item.completed .checkbox {
             background: var(--success);
             border-color: var(--success);
         }
 
-        .day-item.completed .custom-checkbox::after {
+        .day-item.completed .checkbox::after {
             content: '✓';
             position: absolute;
             color: white;
-            font-size: 14px;
-            font-weight: bold;
+            font-size: 12px;
             left: 3px;
             top: -1px;
+            font-weight: bold;
         }
 
-        .day-name { font-size: 14px; color: var(--ink-main); font-weight: 500; }
-        .day-item.completed .day-name { color: var(--ink-muted); text-decoration: line-through; }
+        .day-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
 
-        .footer { margin-top: 40px; text-align: center; }
+        .day-item.completed .day-text {
+            color: var(--ink-muted);
+            text-decoration: line-through;
+        }
+
+        .delete-btn {
+            margin-top: 10px;
+            padding: 0 20px 20px 20px;
+            text-align: right;
+        }
+
+        .btn-del {
+            color: var(--danger);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            text-decoration: underline;
+            opacity: 0.7;
+        }
+
+        .btn-del:hover { opacity: 1; }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            padding-bottom: 40px;
+        }
+
         .btn-reset {
             background: transparent;
             color: var(--danger);
             border: 1px solid var(--danger);
-            padding: 10px 20px;
+            padding: 8px 16px;
             border-radius: var(--radius-md);
             cursor: pointer;
+            font-size: 13px;
             font-weight: 600;
             transition: var(--transition);
-            font-size: 14px;
         }
+
         .btn-reset:hover { background: var(--danger); color: white; }
+
         .save-warning {
-            margin-top: 20px;
-            font-size: 12px;
+            margin-top: 15px;
+            font-size: 11px;
             color: var(--ink-muted);
-            background: rgba(0,0,0,0.05);
-            padding: 8px 16px;
-            border-radius: 20px;
-            display: inline-block;
+            display: block;
         }
 
         .hidden { display: none !important; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-in { animation: fadeIn 0.4s ease forwards; }
     </style>
 </head>
 <body>
@@ -309,27 +289,23 @@
                 <h1>Chill Tracker</h1>
             </div>
             <button class="theme-toggle" id="themeToggle">
-                <span id="themeIcon">🌙</span> <span id="themeText">Mode Sombre</span>
+                <span id="themeIcon">🌓</span> <span id="themeText">Thème</span>
             </button>
         </header>
 
-        <div id="motivationBanner" class="motivation-banner">
-            Chargement de ton message...
-        </div>
-
-        <div class="stats-grid">
+        <div class="stats-bar">
             <div class="stat-card">
-                <span class="stat-label">Résumé Semaine</span>
+                <span class="stat-label">Progression</span>
                 <div class="stat-value" id="weeklyStat">0%</div>
             </div>
             <div class="stat-card">
-                <span class="stat-label">Bilan Mois</span>
+                <span class="stat-label">Total Terminé</span>
                 <div class="stat-value" id="monthlyStat">0/0</div>
             </div>
         </div>
 
         <div class="section-header">
-            <h2>Mes Matières</h2>
+            <h2>Mes Activités</h2>
             <button class="btn-add" id="addSubject">+ Ajouter</button>
         </div>
 
@@ -337,21 +313,17 @@
 
         <div class="footer">
             <button class="btn-reset" id="resetAll">Réinitialiser tout</button>
-            <br>
-            <div class="save-warning">
-                ⚠️ Données sauvegardées uniquement sur cet appareil.
-            </div>
+            <span class="save-warning">Données stockées localement.</span>
         </div>
     </div>
 
     <script>
         let subjects = JSON.parse(localStorage.getItem('chillTrackerData')) || [];
-        const DAYS_OF_WEEK = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+        const DAYS = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
         const subjectsList = document.getElementById('subjectsList');
         const weeklyStat = document.getElementById('weeklyStat');
         const monthlyStat = document.getElementById('monthlyStat');
-        const motivationBanner = document.getElementById('motivationBanner');
         const addBtn = document.getElementById('addSubject');
         const resetBtn = document.getElementById('resetAll');
         const themeToggle = document.getElementById('themeToggle');
@@ -362,13 +334,8 @@
         updateThemeUI();
 
         function updateThemeUI() {
-            const icon = document.getElementById('themeIcon');
             const text = document.getElementById('themeText');
-            if (currentTheme === 'dark') {
-                icon.innerText = '☀️'; text.innerText = 'Mode Clair';
-            } else {
-                icon.innerText = '🌙'; text.innerText = 'Mode Sombre';
-            }
+            text.innerText = currentTheme === 'dark' ? 'Mode Clair' : 'Mode Sombre';
         }
 
         themeToggle.addEventListener('click', () => {
@@ -378,146 +345,79 @@
             updateThemeUI();
         });
 
-        // Logic Rappels & Motivation
-        function updateMotivation() {
-            const now = new Date();
-            const hour = now.getHours();
-            const todayName = DAYS_OF_WEEK[now.getDay()];
-
-            let total = 0, done = 0;
-            subjects.forEach(s => s.days.forEach(d => { total++; if(d.completed) done++; }));
-            const percent = Math.round((done/total)*100) || 0;
-
-            if (percent === 100 && subjects.length > 0) {
-                motivationBanner.innerText = "Incroyable ! Journée terminée, tu peux chiller maintenant ! 🎉";
-                motivationBanner.style.background = "var(--success)";
-            } else if (hour < 12) {
-                motivationBanner.innerText = `Bonjour ! C'est ${todayName}, prêt à cocher tes activités ? ☀️`;
-                motivationBanner.style.background = "var(--primary)";
-            } else if (hour < 18) {
-                motivationBanner.innerText = "On continue sur la lancée ! Garde le rythme. 💪";
-                motivationBanner.style.background = "var(--primary)";
-            } else {
-                motivationBanner.innerText = "Il est tard, n'oublie pas de cocher tes dernières tâches ! 🌙";
-                motivationBanner.style.background = "var(--primary)";
-            }
-        }
-
         function save() {
             localStorage.setItem('chillTrackerData', JSON.stringify(subjects));
             updateStats();
-            updateMotivation();
         }
 
         function updateStats() {
-            if (subjects.length === 0) {
-                weeklyStat.innerText = '0%'; monthlyStat.innerText = '0/0';
-                return;
-            }
             let total = 0, done = 0;
             subjects.forEach(s => s.days.forEach(d => { total++; if(d.completed) done++; }));
             weeklyStat.innerText = `${Math.round((done/total)*100) || 0}%`;
             monthlyStat.innerText = `${done}/${total}`;
         }
 
-        function renderSubjects() {
+        function render() {
             subjectsList.innerHTML = '';
-            const todayName = DAYS_OF_WEEK[new Date().getDay()];
-
             subjects.forEach((subject, sIndex) => {
                 const card = document.createElement('div');
-                card.className = 'subject-card animate-in';
-
-                // Calcul du statut pour le rappel visuel
-                let statusClass = '';
-                let badge = '';
-
-                const todayDay = subject.days.find(d => d.name === todayName);
-                const hasUnfinishedPast = subject.days.some(d => {
-                    const dayIndex = DAYS_OF_WEEK.indexOf(d.name);
-                    const todayIndex = new Date().getDay();
-                    return dayIndex < todayIndex && !d.completed;
-                });
-
-                if (todayDay && !todayDay.completed) {
-                    statusClass = 'status-urgent';
-                    badge = '<span class="badge badge-urgent">À faire aujourd\'hui</span>';
-                } else if (hasUnfinishedPast) {
-                    statusClass = 'status-late';
-                    badge = '<span class="badge badge-late">Rattrapage</span>';
-                }
-
-                card.classList.add(statusClass);
-
-                const completedDays = subject.days.filter(d => d.completed).length;
-                const progressText = `${completedDays}/${subject.days.length} jours`;
+                card.className = 'subject-card';
 
                 card.innerHTML = `
-                    <div class="subject-header" onclick="toggleAccordion(${sIndex})">
-                        <div class="subject-title-group">
-                            <div class="subject-title">${subject.name}</div>
-                            ${badge}
-                        </div>
-                        <div class="subject-progress">${progressText}</div>
+                    <div class="subject-title-bar">
+                        <span class="subject-name">${subject.name}</span>
                     </div>
-                    <div class="subject-content ${subject.expanded ? '' : 'hidden'}" id="content-${sIndex}">
+                    <div class="tasks-grid">
                         ${subject.days.map((day, dIndex) => `
                             <div class="day-item ${day.completed ? 'completed' : ''}"
                                  onclick="toggleDay(${sIndex}, ${dIndex})">
-                                <div class="custom-checkbox"></div>
-                                <span class="day-name">${day.name}</span>
+                                <div class="checkbox"></div>
+                                <span class="day-text">${day.name}</span>
                             </div>
                         `).join('')}
-                        <div class="day-item" style="color: var(--danger); font-weight: 600;"
-                             onclick="deleteSubject(${sIndex})">
-                            <span>🗑️ Supprimer</span>
-                        </div>
+                    </div>
+                    <div class="delete-btn">
+                        <button class="btn-del" onclick="deleteSubject(${sIndex})">Supprimer la matière</button>
                     </div>
                 `;
                 subjectsList.appendChild(card);
             });
             updateStats();
-            updateMotivation();
         }
-
-        window.toggleAccordion = (index) => {
-            subjects[index].expanded = !subjects[index].expanded;
-            renderSubjects();
-        };
 
         window.toggleDay = (sIndex, dIndex) => {
             subjects[sIndex].days[dIndex].completed = !subjects[sIndex].days[dIndex].completed;
             save();
-            renderSubjects();
+            render();
         };
 
         window.deleteSubject = (index) => {
             if(confirm('Supprimer cette matière ?')) {
                 subjects.splice(index, 1);
                 save();
-                renderSubjects();
+                render();
             }
         };
 
         addBtn.addEventListener('click', () => {
-            const name = prompt('Nom de la matière :');
+            const name = prompt('Nom de l\'activité :');
             if (name) {
-                const days = [...DAYS_OF_WEEK].map(d => ({ name: d, completed: false }));
-                subjects.push({ name, days, expanded: true });
+                const days = DAYS.map(d => ({ name: d, completed: false }));
+                subjects.push({ name, days });
                 save();
-                renderSubjects();
+                render();
             }
         });
 
         resetBtn.addEventListener('click', () => {
-            if (confirm('Voulez-vous vraiment tout réinitialiser ?')) {
+            if (confirm('Tout effacer ?')) {
                 subjects = [];
                 save();
-                renderSubjects();
+                render();
             }
         });
 
-        renderSubjects();
+        render();
     </script>
 </body>
 </html>
