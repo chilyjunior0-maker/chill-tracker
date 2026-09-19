@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chill Tracker | Simple & Zen</title>
+    <title>Chill Tracker | Zen Calendar</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,23 +21,23 @@
             --ink-main: #1E293B;
             --ink-muted: #64748B;
             --border-color: #E2E8F0;
-            --shadow: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow: 0 2px 10px rgba(0,0,0,0.05);
             --radius-lg: 12px;
             --radius-md: 6px;
             --transition: all 0.2s ease;
         }
 
         [data-theme="dark"] {
-            --bg-ground: #0F172A;
-            --bg-surface: #1E293B;
+            --bg-ground: #000000; /* Noir pur */
+            --bg-surface: #111111; /* Noir très sombre pour les cartes */
             --primary: #818CF8;
             --primary-hover: #6366F1;
             --success: #34D399;
             --danger: #F87171;
-            --ink-main: #F1F5F9;
-            --ink-muted: #94A3B8;
-            --border-color: #334155;
-            --shadow: 0 4px 6px rgba(0,0,0,0.2);
+            --ink-main: #FFFFFF;
+            --ink-muted: #A1A1AA;
+            --border-color: #27272a;
+            --shadow: 0 4px 12px rgba(0,0,0,0.5);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -48,10 +49,11 @@
             background-color: var(--bg-ground);
             color: var(--ink-main);
             line-height: 1.5;
+            transition: background-color 0.3s ease;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -61,12 +63,11 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
-            padding: 10px 0;
         }
 
         .logo-area h1 {
             font-family: 'Poppins', sans-serif;
-            font-size: 22px;
+            font-size: 24px;
             color: var(--primary);
             margin: 0;
         }
@@ -75,18 +76,73 @@
             background: var(--bg-surface);
             border: 1px solid var(--border-color);
             color: var(--ink-main);
-            padding: 8px 12px;
-            border-radius: var(--radius-md);
+            padding: 8px 16px;
+            border-radius: 20px;
             cursor: pointer;
             font-size: 14px;
             transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 6px;
             box-shadow: var(--shadow);
         }
 
-        /* Stats */
+        /* CALENDRIER SECTION */
+        .calendar-section {
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-header h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            text-align: center;
+        }
+
+        .cal-day-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--ink-muted);
+            padding-bottom: 10px;
+        }
+
+        .cal-date {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 14px;
+            border: 1px solid transparent;
+            cursor: default;
+            transition: var(--transition);
+        }
+
+        .cal-date.today {
+            background: var(--primary);
+            color: white;
+            font-weight: bold;
+        }
+
+        .cal-date.empty {
+            opacity: 0.3;
+        }
+
+        /* STATS BAR */
         .stats-bar {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -119,6 +175,7 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        /* SUBJECTS SECTION */
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -140,12 +197,8 @@
             cursor: pointer;
             font-weight: 500;
             font-size: 13px;
-            transition: var(--transition);
         }
 
-        .btn-add:hover { background: var(--primary-hover); }
-
-        /* Classic Task List Layout */
         .subject-card {
             background: var(--bg-surface);
             border-radius: var(--radius-lg);
@@ -156,22 +209,16 @@
         }
 
         .subject-title-bar {
-            padding: 15px 20px;
-            background: rgba(0,0,0,0.02);
+            padding: 12px 20px;
+            background: rgba(0,0,0,0.03);
             border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .subject-name {
             font-weight: 600;
             font-size: 16px;
         }
 
         .tasks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
             gap: 10px;
             padding: 20px;
         }
@@ -185,7 +232,6 @@
             border-radius: var(--radius-md);
             cursor: pointer;
             transition: var(--transition);
-            background: rgba(0,0,0,0.01);
         }
 
         .day-item:hover {
@@ -203,9 +249,7 @@
             height: 18px;
             border: 2px solid var(--border-color);
             border-radius: 4px;
-            display: inline-block;
             position: relative;
-            transition: var(--transition);
         }
 
         .day-item.completed .checkbox {
@@ -223,19 +267,11 @@
             font-weight: bold;
         }
 
-        .day-text {
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .day-item.completed .day-text {
-            color: var(--ink-muted);
-            text-decoration: line-through;
-        }
+        .day-text { font-size: 14px; font-weight: 500; }
+        .day-item.completed .day-text { color: var(--ink-muted); text-decoration: line-through; }
 
         .delete-btn {
-            margin-top: 10px;
-            padding: 0 20px 20px 20px;
+            padding: 0 20px 15px 20px;
             text-align: right;
         }
 
@@ -245,11 +281,8 @@
             border: none;
             cursor: pointer;
             font-size: 12px;
-            text-decoration: underline;
-            opacity: 0.7;
+            opacity: 0.6;
         }
-
-        .btn-del:hover { opacity: 1; }
 
         .footer {
             margin-top: 40px;
@@ -266,19 +299,9 @@
             cursor: pointer;
             font-size: 13px;
             font-weight: 600;
-            transition: var(--transition);
         }
 
         .btn-reset:hover { background: var(--danger); color: white; }
-
-        .save-warning {
-            margin-top: 15px;
-            font-size: 11px;
-            color: var(--ink-muted);
-            display: block;
-        }
-
-        .hidden { display: none !important; }
     </style>
 </head>
 <body>
@@ -286,12 +309,22 @@
     <div class="container">
         <header>
             <div class="logo-area">
-                <h1>Chill Tracker</h1>
+                <h1 id="appTitle">Chill Tracker</h1>
             </div>
             <button class="theme-toggle" id="themeToggle">
                 <span id="themeIcon">🌓</span> <span id="themeText">Thème</span>
             </button>
         </header>
+
+        <!-- CALENDRIER -->
+        <div class="calendar-section">
+            <div class="calendar-header">
+                <h2 id="monthYear">Mois Année</h2>
+            </div>
+            <div class="calendar-grid" id="calendarGrid">
+                <!-- Rempli par JS -->
+            </div>
+        </div>
 
         <div class="stats-bar">
             <div class="stat-card">
@@ -313,7 +346,6 @@
 
         <div class="footer">
             <button class="btn-reset" id="resetAll">Réinitialiser tout</button>
-            <span class="save-warning">Données stockées localement.</span>
         </div>
     </div>
 
@@ -327,8 +359,10 @@
         const addBtn = document.getElementById('addSubject');
         const resetBtn = document.getElementById('resetAll');
         const themeToggle = document.getElementById('themeToggle');
+        const calendarGrid = document.getElementById('calendarGrid');
+        const monthYearLabel = document.getElementById('monthYear');
 
-        // Thème
+        // --- GESTION DU THÈME ---
         let currentTheme = localStorage.getItem('chillTheme') || 'light';
         document.documentElement.setAttribute('data-theme', currentTheme);
         updateThemeUI();
@@ -345,6 +379,46 @@
             updateThemeUI();
         });
 
+        // --- CALENDRIER ---
+        function renderCalendar() {
+            calendarGrid.innerHTML = '';
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth();
+
+            const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+            monthYearLabel.innerText = `${monthNames[month]} ${year}`;
+
+            // Labels jours
+            const labels = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+            labels.forEach(l => {
+                const div = document.createElement('div');
+                div.className = 'cal-day-label';
+                div.innerText = l;
+                calendarGrid.appendChild(div);
+            });
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            // Espaces vides début de mois
+            for (let i = 0; i < firstDay; i++) {
+                const div = document.createElement('div');
+                div.className = 'cal-date empty';
+                calendarGrid.appendChild(div);
+            }
+
+            // Jours du mois
+            for (let d = 1; d <= daysInMonth; d++) {
+                const div = document.createElement('div');
+                div.className = 'cal-date';
+                if (d === now.getDate()) div.classList.add('today');
+                div.innerText = d;
+                calendarGrid.appendChild(div);
+            }
+        }
+
+        // --- GESTION DES MATIÈRES ---
         function save() {
             localStorage.setItem('chillTrackerData', JSON.stringify(subjects));
             updateStats();
@@ -417,6 +491,8 @@
             }
         });
 
+        // Initialisation
+        renderCalendar();
         render();
     </script>
 </body>
