@@ -1,10 +1,11 @@
+Voici la version "Fidèle à l'Originale" :
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chill Tracker | Zen Calendar</title>
+    <title>Chill Tracker</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,48 +13,38 @@
 
     <style>
         :root {
-            --bg-ground: #F8FAFC;
+            --bg-ground: #F4F7F9;
             --bg-surface: #FFFFFF;
             --primary: #6366F1;
-            --primary-hover: #4F46E5;
             --success: #10B981;
             --danger: #EF4444;
             --ink-main: #1E293B;
             --ink-muted: #64748B;
             --border-color: #E2E8F0;
-            --shadow: 0 2px 10px rgba(0,0,0,0.05);
-            --radius-lg: 12px;
-            --radius-md: 6px;
-            --transition: all 0.2s ease;
+            --radius: 8px;
         }
 
         [data-theme="dark"] {
-            --bg-ground: #000000; /* Noir pur */
-            --bg-surface: #111111; /* Noir très sombre pour les cartes */
+            --bg-ground: #000000;
+            --bg-surface: #111111;
             --primary: #818CF8;
-            --primary-hover: #6366F1;
             --success: #34D399;
             --danger: #F87171;
             --ink-main: #FFFFFF;
             --ink-muted: #A1A1AA;
             --border-color: #27272a;
-            --shadow: 0 4px 12px rgba(0,0,0,0.5);
         }
-
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             margin: 0;
-            padding: 0;
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-ground);
             color: var(--ink-main);
-            line-height: 1.5;
             transition: background-color 0.3s ease;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 600px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -62,130 +53,141 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
-        .logo-area h1 {
+        h1 {
             font-family: 'Poppins', sans-serif;
-            font-size: 24px;
+            font-size: 22px;
             color: var(--primary);
             margin: 0;
         }
 
-        .theme-toggle {
+        .theme-btn {
             background: var(--bg-surface);
             border: 1px solid var(--border-color);
             color: var(--ink-main);
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 5px 12px;
+            border-radius: 15px;
             cursor: pointer;
-            font-size: 14px;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
+            font-size: 13px;
         }
 
-        /* CALENDRIER SECTION */
-        .calendar-section {
+        /* CALENDRIER SIMPLE (Version Compacte) */
+        .calendar-box {
             background: var(--bg-surface);
-            border-radius: var(--radius-lg);
             border: 1px solid var(--border-color);
-            padding: 20px;
-            margin-bottom: 30px;
-            box-shadow: var(--shadow);
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            border-radius: var(--radius);
+            padding: 15px;
             margin-bottom: 20px;
-        }
-
-        .calendar-header h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
             text-align: center;
         }
 
-        .cal-day-label {
-            font-size: 12px;
+        .cal-title {
             font-weight: 600;
-            color: var(--ink-muted);
-            padding-bottom: 10px;
-        }
-
-        .cal-date {
-            aspect-ratio: 1 / 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
+            margin-bottom: 10px;
+            display: block;
             font-size: 14px;
-            border: 1px solid transparent;
-            cursor: default;
-            transition: var(--transition);
         }
 
-        .cal-date.today {
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            max-width: 280px;
+            margin: 0 auto;
+        }
+
+        .cal-day {
+            font-size: 11px;
+            padding: 5px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .cal-today {
             background: var(--primary);
             color: white;
             font-weight: bold;
         }
 
-        .cal-date.empty {
-            opacity: 0.3;
-        }
-
-        /* STATS BAR */
-        .stats-bar {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: var(--bg-surface);
-            padding: 15px;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-color);
-            text-align: center;
-            box-shadow: var(--shadow);
-        }
-
-        .stat-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            color: var(--ink-muted);
-            font-weight: 600;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .stat-value {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* SUBJECTS SECTION */
-        .section-header {
+        /* STATS */
+        .stats-container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
-        .section-header h2 {
-            font-family: 'Poppins', sans-serif;
+        .stat-item {
+            flex: 1;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        .stat-item span {
+            font-size: 11px;
+            color: var(--ink-muted);
+            display: block;
+        }
+
+        .stat-item strong {
             font-size: 18px;
+            color: var(--primary);
+        }
+
+        /* MATIERES ET CASES A COCHER */
+        .subject-block {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            margin-bottom: 15px;
+            padding: 15px;
+        }
+
+        .subject-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 13px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .check-item input {
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .add-area {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-name {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            background: var(--bg-surface);
+            color: var(--ink-main);
         }
 
         .btn-add {
@@ -193,86 +195,8 @@
             color: white;
             border: none;
             padding: 8px 15px;
-            border-radius: var(--radius-md);
+            border-radius: var(--radius);
             cursor: pointer;
-            font-weight: 500;
-            font-size: 13px;
-        }
-
-        .subject-card {
-            background: var(--bg-surface);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-color);
-            margin-bottom: 20px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-        }
-
-        .subject-title-bar {
-            padding: 12px 20px;
-            background: rgba(0,0,0,0.03);
-            border-bottom: 1px solid var(--border-color);
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        .tasks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 10px;
-            padding: 20px;
-        }
-
-        .day-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .day-item:hover {
-            border-color: var(--primary);
-            background: rgba(99, 102, 241, 0.05);
-        }
-
-        .day-item.completed {
-            background: rgba(16, 185, 129, 0.1);
-            border-color: var(--success);
-        }
-
-        .checkbox {
-            width: 18px;
-            height: 18px;
-            border: 2px solid var(--border-color);
-            border-radius: 4px;
-            position: relative;
-        }
-
-        .day-item.completed .checkbox {
-            background: var(--success);
-            border-color: var(--success);
-        }
-
-        .day-item.completed .checkbox::after {
-            content: '✓';
-            position: absolute;
-            color: white;
-            font-size: 12px;
-            left: 3px;
-            top: -1px;
-            font-weight: bold;
-        }
-
-        .day-text { font-size: 14px; font-weight: 500; }
-        .day-item.completed .day-text { color: var(--ink-muted); text-decoration: line-through; }
-
-        .delete-btn {
-            padding: 0 20px 15px 20px;
-            text-align: right;
         }
 
         .btn-del {
@@ -280,72 +204,59 @@
             background: none;
             border: none;
             cursor: pointer;
-            font-size: 12px;
-            opacity: 0.6;
+            font-size: 11px;
+            float: right;
         }
 
         .footer {
-            margin-top: 40px;
             text-align: center;
-            padding-bottom: 40px;
+            margin-top: 30px;
         }
 
         .btn-reset {
-            background: transparent;
             color: var(--danger);
+            background: none;
             border: 1px solid var(--danger);
-            padding: 8px 16px;
-            border-radius: var(--radius-md);
+            padding: 5px 10px;
+            border-radius: var(--radius);
             cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 12px;
         }
-
-        .btn-reset:hover { background: var(--danger); color: white; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <header>
-            <div class="logo-area">
-                <h1 id="appTitle">Chill Tracker</h1>
-            </div>
-            <button class="theme-toggle" id="themeToggle">
-                <span id="themeIcon">🌓</span> <span id="themeText">Thème</span>
-            </button>
+            <h1>Chill Tracker</h1>
+            <button class="theme-btn" id="themeToggle">🌓 Thème</button>
         </header>
 
-        <!-- CALENDRIER -->
-        <div class="calendar-section">
-            <div class="calendar-header">
-                <h2 id="monthYear">Mois Année</h2>
+        <div class="calendar-box">
+            <span class="cal-title" id="calMonth">Mois</span>
+            <div class="cal-grid" id="calGrid"></div>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-item">
+                <span>Progression</span>
+                <strong id="statPercent">0%</strong>
             </div>
-            <div class="calendar-grid" id="calendarGrid">
-                <!-- Rempli par JS -->
+            <div class="stat-item">
+                <span>Terminé</span>
+                <strong id="statCount">0/0</strong>
             </div>
         </div>
 
-        <div class="stats-bar">
-            <div class="stat-card">
-                <span class="stat-label">Progression</span>
-                <div class="stat-value" id="weeklyStat">0%</div>
-            </div>
-            <div class="stat-card">
-                <span class="stat-label">Total Terminé</span>
-                <div class="stat-value" id="monthlyStat">0/0</div>
-            </div>
-        </div>
-
-        <div class="section-header">
-            <h2>Mes Activités</h2>
-            <button class="btn-add" id="addSubject">+ Ajouter</button>
+        <div class="add-area">
+            <input type="text" id="subjInput" class="input-name" placeholder="Nouvelle matière...">
+            <button class="btn-add" id="addBtn">Ajouter</button>
         </div>
 
         <div id="subjectsList"></div>
 
         <div class="footer">
-            <button class="btn-reset" id="resetAll">Réinitialiser tout</button>
+            <button class="btn-reset" id="resetBtn">Réinitialiser tout</button>
         </div>
     </div>
 
@@ -353,72 +264,33 @@
         let subjects = JSON.parse(localStorage.getItem('chillTrackerData')) || [];
         const DAYS = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 
-        const subjectsList = document.getElementById('subjectsList');
-        const weeklyStat = document.getElementById('weeklyStat');
-        const monthlyStat = document.getElementById('monthlyStat');
-        const addBtn = document.getElementById('addSubject');
-        const resetBtn = document.getElementById('resetAll');
-        const themeToggle = document.getElementById('themeToggle');
-        const calendarGrid = document.getElementById('calendarGrid');
-        const monthYearLabel = document.getElementById('monthYear');
+        // Thème
+        let theme = localStorage.getItem('chillTheme') || 'light';
+        document.documentElement.setAttribute('data-theme', theme);
 
-        // --- GESTION DU THÈME ---
-        let currentTheme = localStorage.getItem('chillTheme') || 'light';
-        document.documentElement.setAttribute('data-theme', currentTheme);
-        updateThemeUI();
-
-        function updateThemeUI() {
-            const text = document.getElementById('themeText');
-            text.innerText = currentTheme === 'dark' ? 'Mode Clair' : 'Mode Sombre';
-        }
-
-        themeToggle.addEventListener('click', () => {
-            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', currentTheme);
-            localStorage.setItem('chillTheme', currentTheme);
-            updateThemeUI();
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            theme = theme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('chillTheme', theme);
         });
 
-        // --- CALENDRIER ---
-        function renderCalendar() {
-            calendarGrid.innerHTML = '';
+        // Calendrier Compact
+        function initCal() {
             const now = new Date();
-            const year = now.getFullYear();
-            const month = now.getMonth();
-
             const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-            monthYearLabel.innerText = `${monthNames[month]} ${year}`;
+            document.getElementById('calMonth').innerText = `${monthNames[now.getMonth()]} ${now.getFullYear()}`;
 
-            // Labels jours
-            const labels = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
-            labels.forEach(l => {
-                const div = document.createElement('div');
-                div.className = 'cal-day-label';
-                div.innerText = l;
-                calendarGrid.appendChild(div);
-            });
+            const grid = document.getElementById('calGrid');
+            const firstDay = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
+            const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
 
-            const firstDay = new Date(year, month, 1).getDay();
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-            // Espaces vides début de mois
-            for (let i = 0; i < firstDay; i++) {
-                const div = document.createElement('div');
-                div.className = 'cal-date empty';
-                calendarGrid.appendChild(div);
-            }
-
-            // Jours du mois
-            for (let d = 1; d <= daysInMonth; d++) {
-                const div = document.createElement('div');
-                div.className = 'cal-date';
-                if (d === now.getDate()) div.classList.add('today');
-                div.innerText = d;
-                calendarGrid.appendChild(div);
+            for(let i=0; i<firstDay; i++) grid.innerHTML += '<div></div>';
+            for(let d=1; d<=daysInMonth; d++) {
+                const isToday = d === now.getDate() ? 'cal-today' : '';
+                grid.innerHTML += `<div class="cal-day ${isToday}">${d}</div>`;
             }
         }
 
-        // --- GESTION DES MATIÈRES ---
         function save() {
             localStorage.setItem('chillTrackerData', JSON.stringify(subjects));
             updateStats();
@@ -427,72 +299,65 @@
         function updateStats() {
             let total = 0, done = 0;
             subjects.forEach(s => s.days.forEach(d => { total++; if(d.completed) done++; }));
-            weeklyStat.innerText = `${Math.round((done/total)*100) || 0}%`;
-            monthlyStat.innerText = `${done}/${total}`;
+            document.getElementById('statPercent').innerText = `${Math.round((done/total)*100) || 0}%`;
+            document.getElementById('statCount').innerText = `${done}/${total}`;
         }
 
         function render() {
-            subjectsList.innerHTML = '';
-            subjects.forEach((subject, sIndex) => {
-                const card = document.createElement('div');
-                card.className = 'subject-card';
-
-                card.innerHTML = `
-                    <div class="subject-title-bar">
-                        <span class="subject-name">${subject.name}</span>
-                    </div>
-                    <div class="tasks-grid">
-                        ${subject.days.map((day, dIndex) => `
-                            <div class="day-item ${day.completed ? 'completed' : ''}"
-                                 onclick="toggleDay(${sIndex}, ${dIndex})">
-                                <div class="checkbox"></div>
-                                <span class="day-text">${day.name}</span>
-                            </div>
+            const list = document.getElementById('subjectsList');
+            list.innerHTML = '';
+            subjects.forEach((s, sIdx) => {
+                const div = document.createElement('div');
+                div.className = 'subject-block';
+                div.innerHTML = `
+                    <span class="subject-name">${s.name} <button class="btn-del" onclick="deleteSub(${sIdx})">Supprimer</button></span>
+                    <div class="checkbox-group">
+                        ${s.days.map((d, dIdx) => `
+                            <label class="check-item">
+                                <input type="checkbox" ${d.completed ? 'checked' : ''} onchange="toggle(${sIdx}, ${dIdx})">
+                                ${d.name}
+                            </label>
                         `).join('')}
                     </div>
-                    <div class="delete-btn">
-                        <button class="btn-del" onclick="deleteSubject(${sIndex})">Supprimer la matière</button>
-                    </div>
                 `;
-                subjectsList.appendChild(card);
+                list.appendChild(div);
             });
             updateStats();
         }
 
-        window.toggleDay = (sIndex, dIndex) => {
-            subjects[sIndex].days[dIndex].completed = !subjects[sIndex].days[dIndex].completed;
+        window.toggle = (sIdx, dIdx) => {
+            subjects[sIdx].days[dIdx].completed = !subjects[sIdx].days[dIdx].completed;
             save();
             render();
         };
 
-        window.deleteSubject = (index) => {
-            if(confirm('Supprimer cette matière ?')) {
-                subjects.splice(index, 1);
+        window.deleteSub = (idx) => {
+            if(confirm('Supprimer ?')) {
+                subjects.splice(idx, 1);
                 save();
                 render();
             }
         };
 
-        addBtn.addEventListener('click', () => {
-            const name = prompt('Nom de l\'activité :');
-            if (name) {
-                const days = DAYS.map(d => ({ name: d, completed: false }));
-                subjects.push({ name, days });
+        document.getElementById('addBtn').addEventListener('click', () => {
+            const input = document.getElementById('subjInput');
+            if(input.value) {
+                subjects.push({ name: input.value, days: DAYS.map(d => ({name: d, completed: false})) });
+                input.value = '';
                 save();
                 render();
             }
         });
 
-        resetBtn.addEventListener('click', () => {
-            if (confirm('Tout effacer ?')) {
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            if(confirm('Tout effacer ?')) {
                 subjects = [];
                 save();
                 render();
             }
         });
 
-        // Initialisation
-        renderCalendar();
+        initCal();
         render();
     </script>
 </body>
